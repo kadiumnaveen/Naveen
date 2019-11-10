@@ -1,0 +1,55 @@
+// create tables
+// run the file WorkerNotificationManger.java after required changes.
+// manupulate the Workers_Bank table from any application observe the notifications in console.
+
+
+CREATE TABLE Employees(
+    Employ_ID int,
+    Last_Name varchar(255),
+    First_Name varchar(255),
+    City_Name varchar(255) 
+);
+
+CREATE TABLE Workers_Bank(
+    Worker_ID int,
+    Last_Name varchar(255),
+    First_Name varchar(255),
+    City_Name varchar(255) 
+);
+
+TRUNCATE Table Workers;
+
+TRUNCATE Table Employees;
+
+select * from Employees;
+
+select * from Workers_BANK;
+
+Drop Table Employees;
+
+grant change notification to sfmsbr;
+
+commit;
+
+select * from Employees where ROWID='AAAy7cAAFAAAARfAAD';
+
+
+CREATE OR REPLACE PROCEDURE insertWorker(
+	   WB_workerid IN Workers_Bank.WORKER_ID%TYPE,
+	   WB_lastname IN Workers_Bank.LAST_NAME%TYPE,
+	   WB_firstname IN Workers_Bank.FIRST_NAME%TYPE,
+	   WB_cityname IN Workers_Bank.CITY_NAME%TYPE)
+IS
+BEGIN
+
+  INSERT INTO Workers_Bank ("WORKER_ID", "LAST_NAME", "FIRST_NAME", "CITY_NAME") 
+  VALUES (WB_workerid, WB_lastname,WB_firstname, WB_cityname);
+
+  COMMIT;
+
+END;
+
+
+BEGIN
+   insertWorker(1001,'mkyong','system','MUMBAI');
+END;
